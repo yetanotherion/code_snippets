@@ -1,0 +1,15 @@
+<!-- Inspired from the default config: https://github.com/apache/groovy/blob/master/src/resources/groovy/grape/defaultGrapeConfig.xml -->
+<ivysettings>
+  <settings defaultResolver="downloadGrapes"/>
+  <caches repositoryCacheDir="${user.home}/.groovy/grapes/.cache/repository" checkUpToDate="false" lockStrategy="artifact-lock-nio"/>
+  <resolvers>
+    <chain name="downloadGrapes" returnFirst="true">
+      <filesystem name="cachedGrapes">
+        <ivy pattern="${user.home}/.groovy/grapes/[organisation]/[module]/ivy-[revision].xml"/>
+        <artifact pattern="${user.home}/.groovy/grapes/[organisation]/[module]/[type]s/[artifact]-[revision](-[classifier]).[ext]"/>
+      </filesystem>
+      <!--setup your own repository -->
+      <ibiblio name="jcenter" root="https://jcenter.bintray.com/" m2compatible="true"/>
+    </chain>
+  </resolvers>
+</ivysettings>
